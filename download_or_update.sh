@@ -1,1 +1,1 @@
-curl -o main.sh https://raw.githubusercontent.com/kaustav1996/UNIX/master/main.sh
+curl -o main.sh https://raw.githubusercontent.com/brainchange/VM/master/main.sh
