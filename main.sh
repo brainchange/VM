@@ -169,7 +169,7 @@ automation_kit()
 	sudo pip install selenium
 	cd /home
 	sudo apt-get -f install
-	sudo git clone https://github.com/kaustav1996/Automation
+	sudo git clone https://github.com/brainchange/Automation
 	sudo cp Automation/chromedriver /
 	sudo chmod +x /chromedriver
 
