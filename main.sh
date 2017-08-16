@@ -99,9 +99,9 @@ startup_settings()
 				echo "ERROR!! BROWSER NOT AVAILABLE!!"
 			fi
 			if [[ "$5" == "1" ]]; then
-				echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
+				echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -e 'python /home/Automation/refer.py'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
 			else
-				echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=lxterminal -e 'sh -c python /home/Automation/refer.py'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
+				echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=lxterminal -e 'python /home/Automation/refer.py'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
 			fi
 			sudo chmod +x /etc/xdg/autostart/term.desktop;
 		elif [[ "$OS_ID" == "debian" ]]; then
@@ -172,8 +172,8 @@ automation_kit()
 	sudo git clone https://github.com/brainchange/Automation
 	sudo cp Automation/chromedriver /
 	sudo chmod +x /chromedriver
-
-
+	sudo chmod a=rwx /home/Automation/refer.py
+	sudo chmod +x /home/Automation/refer.py
 }
 restart_service()
 {	
