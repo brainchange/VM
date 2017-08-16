@@ -195,6 +195,7 @@ restart_service()
 echo "###################################################################"
 if [[ "$1" == "-help" ]]; then
 	echo "sudo bash main.sh [1 for root / username] [1 for password akshay@123 / password ] [1 = xrdp / 2 = vnc] [1 for chrome/2 for firefox/ 3 for chromium] [ 1 for GCP / 2 for my.vultr]"
+	exit 0
 else
 
 	if [[ "$1" == "1" ]]; then
