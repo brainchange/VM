@@ -192,16 +192,15 @@ restart_service()
 	fi
 
 }
-echo "###################################################################"
 if [[ "$1" == "-help" ]]; then
-	echo "================HELP========================"
-	echo "sudo bash main.sh [user] [password] [server] [browser] [GCP/my.vultr]\n"
-	echo "WARNING!!        All the Arguments Must Be Present!!  \n"
-	echo "user     ->         1 (root) | Any other Username\n"
-	echo "password ->         1 (akshay@123) | Any other password\n"
-	echo "server   ->         1 (xrdp) | 2 (vnc) \n"
+	echo "==================================HELP================================"
+	echo "sudo bash main.sh [user] [password] [server] [browser] [GCP/my.vultr]"
+	echo "WARNING!!        All the Arguments Must Be Present!!"
+	echo "user     ->         1 (root) | Any other Username"
+	echo "password ->         1 (akshay@123) | Any other password"
+	echo "server   ->         1 (xrdp) | 2 (vnc)"
 	echo "browser  ->         1 (chrome) | 2 (firefox) / 3 (chromium)"
-	echo "Cloud    ->         1 (GCP) | 2 (my.vultr) \ n"
+	echo "Cloud    ->         1 (GCP) | 2 (my.vultr)"
 	exit 0
 else
 
