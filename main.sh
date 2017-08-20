@@ -201,6 +201,12 @@ if [[ "$1" == "-help" ]]; then
 	echo "server   ->         1 (xrdp) | 2 (vnc)"
 	echo "browser  ->         1 (chrome) | 2 (firefox) / 3 (chromium)"
 	echo "Cloud    ->         1 (GCP) | 2 (my.vultr)"
+	echo "======================================================================"
+	echo "For example"
+	echo "GCP Chrome - "
+	echo "sudo bash main.sh 1 1 1 1 1"
+	echo "Vultr Chrome - "
+	echo "sudo bash main.sh 1 1 1 1 2"
 	exit 0
 else
 
