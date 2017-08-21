@@ -108,7 +108,7 @@ startup_settings()
 				if [[ "$OS_VERSION" == "14.04" ]]; then
 					echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop;
 				else
-					echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=lxterminal -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
+					echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=lxterminal hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
 				fi
 			fi
 			sudo chmod +x /etc/xdg/autostart/term.desktop;
