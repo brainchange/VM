@@ -98,20 +98,10 @@ startup_settings()
 			else
 				echo "ERROR!! BROWSER NOT AVAILABLE!!"
 			fi
-			if [[ "$5" == "1" ]]; then
-				if [[ "$OS_VERSION" == "14.04" ]]; then
-					echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop;
-				else
-					echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
-				fi
-			else
-				if [[ "$OS_VERSION" == "14.04" ]]; then
-					echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop;
-				else
-					echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=lxterminal hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
-				fi
-			fi
+			echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
 			sudo chmod +x /etc/xdg/autostart/term.desktop;
+			echo -e "[Desktop Entry]\nName=Terminal_autostart1\nExec=xterm\nType=Application" >>/etc/xdg/autostart/term1.desktop; #terminal would start at start up
+			sudo chmod +x /etc/xdg/autostart/term1.desktop;
 		elif [[ "$OS_ID" == "debian" ]]; then
 			sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart
 			if [[ "$STARTUP_BROWSER" == "chrome" ]]; then
