@@ -290,14 +290,14 @@ else
 		echo lxsession -s LXDE -e LXDE > ~/.xsession ;
 		automation_kit # selenium dependencies and git repository download
 		sudo apt-get -y install xterm
+		if [[ "$6" == "1" ]]; then
+		WEBSITE='www.gmail.com'
+		else
+			WEBSITE='$6'
+			echo 'Website Chosen: $6'
+		fi
 		startup_settings
 		sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart		
 		machine_info
-	fi
-	if [[ "$6" == "1" ]]; then
-		WEBSITE='www.gmail.com'
-	else
-		WEBSITE='$6'
-		echo 'Website Chosen: $6'
 	fi
 fi
