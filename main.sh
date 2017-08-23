@@ -88,7 +88,7 @@ startup_settings()
 		if [[ "$OS_ID" == "Ubuntu" ]]; then
 			sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart
 			if [[ "$STARTUP_BROWSER" == "chrome" ]]; then
-				echo -e "[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox $WEBSITE\nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
+				echo -e "[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox $WEBSITE \nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/chrome.desktop;
 			elif [[ "$STARTUP_BROWSER" == "chromium" ]]; then
 				echo -e "[Desktop Entry]\nName=Chromium_autostart\nExec=chromium-browser --no-sandbox $WEBSITE \nType=Application" >>/etc/xdg/autostart/chromium.desktop; #chrome would start at start up
@@ -204,9 +204,9 @@ if [[ "$1" == "-help" ]]; then
 	echo "======================================================================"
 	echo "For example"
 	echo "GCP Chrome - "
-	echo "sudo bash main.sh 1 1 1 1 1"
+	echo "sudo bash main.sh 1 1 1 1 1 1"
 	echo "Vultr Chrome - "
-	echo "sudo bash main.sh 1 1 1 1 2"
+	echo "sudo bash main.sh 1 1 1 1 2 www.github.com"
 	exit 0
 else
 
@@ -244,7 +244,7 @@ else
 		automation_kit
 		machine_info
 		echo "###################################################################"
-	else
+	elif [[ "$5" == "3" ]]; then
 		sudo apt-get update;
 		if [[ "$OS_VERSION" == "14.04" ]]; then
 			sudo apt-get -y install lxde ubuntu-gnome-desktop tightvncserver xrdp chromium-browser firefox flashplugin-installer;
@@ -268,10 +268,36 @@ else
 		startup_settings
 		echo  sudo /etc/init.d/xrdp restart ; #restart
 		machine_info
+	else
+		sudo apt-get update;
+		if [[ "$OS_VERSION" == "14.04" ]]; then
+			sudo apt-get -y install lxde ubuntu-gnome-desktop tightvncserver xrdp chromium-browser firefox flashplugin-installer;
+		else
+			sudo apt-get -y install lxde ubuntu-gnome-desktop tightvncserver xrdp chromium-browser firefox browser-plugin-freshplayer-pepperflash; # installing desktop and browsers and plugins
+		fi
+		wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb;
+		sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb;sudo apt-get -y install -f; #installing chrome
+		rm /tmp/google-chrome-stable_current_amd64.deb;
+		sudo chmod a=rwx /etc/chromium-browser/default;
+		sudo chmod -R a=rwx /home/;
+		echo "CHROMIUM_FLAGS=\" --user-data-dir --no-sandbox\"" >  /etc/chromium-browser/default ;
+		echo -e "[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
+		echo -e "[Desktop Entry]\nName=chromium\nExec=chromium-browser www.gmail.com\nType=Application" >> /home/chromium.desktop
+		echo -e "[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
+		chmod +x /home/chromium.desktop;
+		chmod +x /home/chrome.desktop;
+		chmod +x /home/firefox.desktop;
+		echo lxsession -s LXDE -e LXDE > ~/.xsession ;
+		automation_kit # selenium dependencies and git repository download
+		sudo apt-get -y install xterm
+		startup_settings
+		sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart		
+		machine_info
 	fi
 	if [[ "$6" == "1" ]]; then
 		WEBSITE='www.gmail.com'
 	else
 		WEBSITE='$6'
+		echo 'Website Chosen: $6'
 	fi
 fi
