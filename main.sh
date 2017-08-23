@@ -17,7 +17,7 @@ OS_ID='Ubuntu' #default os name
 OS_VERSION='17.04' #default os version
 OS_NAME='$OS_ID $OSVERSION'
 STARTUP_BROWSER='chrome' #default browser
-WEBSITE=='www.gmail.com'
+WEBSITE='www.gmail.com'
 detect_os()
 {	
 	sudo apt-get -y install python-minimal
