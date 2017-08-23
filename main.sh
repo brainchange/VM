@@ -17,7 +17,6 @@ OS_ID='Ubuntu' #default os name
 OS_VERSION='17.04' #default os version
 OS_NAME='$OS_ID $OSVERSION'
 STARTUP_BROWSER='chrome' #default browser
-WEBSITE='www.gmail.com'
 detect_os()
 {	
 	sudo apt-get -y install python-minimal
@@ -88,13 +87,13 @@ startup_settings()
 		if [[ "$OS_ID" == "Ubuntu" ]]; then
 			sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart
 			if [[ "$STARTUP_BROWSER" == "chrome" ]]; then
-				echo -e "[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox $WEBSITE \nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
+				echo -e "[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox www.google.com \nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/chrome.desktop;
 			elif [[ "$STARTUP_BROWSER" == "chromium" ]]; then
-				echo -e "[Desktop Entry]\nName=Chromium_autostart\nExec=chromium-browser --no-sandbox $WEBSITE \nType=Application" >>/etc/xdg/autostart/chromium.desktop; #chrome would start at start up
+				echo -e "[Desktop Entry]\nName=Chromium_autostart\nExec=chromium-browser --no-sandbox www.google.com \nType=Application" >>/etc/xdg/autostart/chromium.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/chromium.desktop;
 			elif [[ "$STARTUP_BROWSER" == "firefox" ]]; then
-				echo -e "[Desktop Entry]\nName=Firefox_autostart\nExec=firefox $WEBSITE \nType=Application" >>/etc/xdg/autostart/fox.desktop; #chrome would start at start up
+				echo -e "[Desktop Entry]\nName=Firefox_autostart\nExec=firefox www.google.com \nType=Application" >>/etc/xdg/autostart/fox.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/fox.desktop;
 			else
 				echo "ERROR!! BROWSER NOT AVAILABLE!!"
@@ -200,13 +199,12 @@ if [[ "$1" == "-help" ]]; then
 	echo "server   ->         1 (xrdp) | 2 (vnc)"
 	echo "browser  ->         1 (chrome) | 2 (firefox) / 3 (chromium)"
 	echo "Cloud    ->         1 (GCP) | 2 (my.vultr)"
-	echo "Website  ->         1 (www.gmail.com) | url (www.facebook.com)"
 	echo "======================================================================"
 	echo "For example"
 	echo "GCP Chrome - "
-	echo "sudo bash main.sh 1 1 1 1 1 1"
+	echo "sudo bash main.sh 1 1 1 1 1"
 	echo "Vultr Chrome - "
-	echo "sudo bash main.sh 1 1 1 1 2 www.github.com"
+	echo "sudo bash main.sh 1 1 1 1 2"
 	exit 0
 else
 
@@ -290,12 +288,6 @@ else
 		echo lxsession -s LXDE -e LXDE > ~/.xsession ;
 		automation_kit # selenium dependencies and git repository download
 		sudo apt-get -y install xterm
-		if [[ "$6" == "1" ]]; then
-		WEBSITE='www.gmail.com'
-		else
-			WEBSITE='$6'
-			echo 'Website Chosen: $6'
-		fi
 		startup_settings
 		sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart		
 		machine_info
