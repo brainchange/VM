@@ -293,3 +293,4 @@ else
 		machine_info
 	fi
 fi
+sudo rm /etc/xdg/autostart/xscreensaver.desktop
