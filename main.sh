@@ -293,4 +293,8 @@ else
 		machine_info
 	fi
 fi
+echo "##############Removing Screensaver: (may encounter errors but don't mind) ################"
 sudo rm /etc/xdg/autostart/xscreensaver.desktop
+sudo sed -i.bak '/@xscreensaver/c #screensaver removes' /etc/xdg/lxsession/LXDE/autostart
+echo "#########################################################################################"
+
