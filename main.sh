@@ -164,7 +164,7 @@ install_desktop()
 automation_kit()
 {
 	sudo apt -y install python-pip git
-	sudo pip install selenium bs4
+	sudo pip install selenium setuptools bs4 lxml
 	cd /home
 	sudo apt-get -f install
 	sudo git clone https://github.com/brainchange/Automation
