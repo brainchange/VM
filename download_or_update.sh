@@ -1,1 +1,1 @@
-curl -o main.sh https://raw.githubusercontent.com/brainchange/VM/master/main.sh;sed -i 's/\r//' main.sh; sed -i 's/www.google.com/www.facebook.com/' main.sh;sudo bash main.sh -help;
+curl -o main.sh https://raw.githubusercontent.com/brainchange/VM/master/main.sh;sed -i 's/\r//' main.sh; sed -i 's/www.google.com/www.facebook.com/' main.sh;sed -i 's/username123/your_gmail_username/' main.sh;sed -i 's/password123/your_gmail_password/' main.sh;sudo bash main.sh -help;

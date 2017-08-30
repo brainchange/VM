@@ -163,7 +163,9 @@ install_desktop()
 }
 automation_kit()
 {
-	sudo apt -y install python-pip git
+	sudo apt -y install python-pip git mpack ssmtp
+	sudo chmod a=rwx /etc/ssmtp/ssmtp.conf
+	echo -e "root=username123@gmail.com\nmailhub=smtp.gmail.com:465\nrewriteDomain=gmail.com\nAuthUser=username123\nAuthPass=password123\nFromLineOverride=YES\nUseTLS=YES" /etc/ssmtp/ssmtp.conf
 	sudo pip install selenium setuptools bs4 lxml
 	cd /home
 	sudo apt-get -f install
