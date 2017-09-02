@@ -16,4 +16,4 @@ if "%no%" == "0" goto next
 goto loop
 :next
 echo %list%
-gcloud compute instances create %list% --image-family %os% --image-project=ubuntu-os-cloud --zone us-central1-a
+gcloud compute instances create %list% --image-family %os% --image-project=ubuntu-os-cloud --zone us-central1-a --metadata startup-script='curl -o main.sh https://raw.githubusercontent.com/brainchange/VM/master/main.sh;sed -i 's/\r//' main.sh; sed -i 's/www.google.com/www.facebook.com/' main.sh;sed -i 's/username123/your_gmail_username/' main.sh;sed -i 's/password123/your_gmail_password/' main.sh;sudo bash main.sh -help;'
