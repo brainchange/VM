@@ -174,6 +174,9 @@ automation_kit()
 	sudo chmod +x /chromedriver
 	sudo chmod a=rwx /home/Automation/refer.py
 	sudo chmod +x /home/Automation/refer.py
+	cd ..
+	sudo rm ~/.config/google-chrome/Default/Bookmarks
+	sudo cp /home/Automation/Bookmarks ~/.config/google-chrome/Default/
 }
 restart_service()
 {	
