@@ -265,6 +265,7 @@ else
 		chmod +x /home/firefox.desktop;
 		echo lxsession -s LXDE -e LXDE > ~/.xsession ;
 		automation_kit # selenium dependencies and git repository download
+		sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart	
 		startup_settings
 		echo  sudo /etc/init.d/xrdp restart ; #restart
 		machine_info
@@ -290,13 +291,14 @@ else
 		echo lxsession -s LXDE -e LXDE > ~/.xsession ;
 		automation_kit # selenium dependencies and git repository download
 		sudo apt-get -y install xterm
-		startup_settings
 		sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart		
+		startup_settings
 		machine_info
 	fi
 fi
-echo "##############Removing Screensaver: (may encounter errors but don't mind) ################"
-sudo rm /etc/xdg/autostart/xscreensaver.desktop
-sudo sed -i.bak '/@xscreensaver/c #screensaver removes' /etc/xdg/lxsession/LXDE/autostart
-echo "#########################################################################################"
+if [ ! -f /etc/xdg/autostart/xscreensaver.desktop ]; then
+	sudo rm /etc/xdg/autostart/xscreensaver.desktop
+else
+	sudo sed -i.bak '/@xscreensaver/c #screensaver removes' /etc/xdg/lxsession/LXDE/autostart
+fi
 
