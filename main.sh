@@ -175,8 +175,12 @@ automation_kit()
 	sudo chmod a=rwx /home/Automation/refer.py
 	sudo chmod +x /home/Automation/refer.py
 	cd ..
-	sudo rm ~/.config/google-chrome/Default/Bookmarks
-	sudo cp /home/Automation/Bookmarks ~/.config/google-chrome/Default/
+	if [ -f /etc/xdg/autostart/xscreensaver.desktop ]; then
+		sudo rm ~/.config/google-chrome/Default/Bookmarks
+		sudo cp /home/Automation/Bookmarks ~/.config/google-chrome/Default/
+	else
+		echo "Bookmark Addition not possible"
+	fi
 }
 restart_service()
 {	
