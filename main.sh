@@ -299,7 +299,7 @@ else
 		machine_info
 	fi
 fi
-if [ ! -f /etc/xdg/autostart/xscreensaver.desktop ]; then
+if [ -f /etc/xdg/autostart/xscreensaver.desktop ]; then
 	sudo rm /etc/xdg/autostart/xscreensaver.desktop
 else
 	sudo sed -i.bak '/@xscreensaver/c #screensaver removes' /etc/xdg/lxsession/LXDE/autostart
