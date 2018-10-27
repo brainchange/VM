@@ -128,8 +128,13 @@ install_desktop()
 		if [[ "$SERVER" == "xrdp" ]]; then
 			sudo apt-get update;
 			sudo apt-get -y install xrdp xfce4 xfce4-goodies;
-			echo xfce4-session >~/.xsession;
-			sudo sed -i.bak '/fi/a #edit \n startxfce4 \n' /etc/xrdp/startwm.sh;
+			if [[ "$OS_VERSION" == "18.04" ]]; then
+				sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n xfce-session \n' /etc/xrdp/startwm.sh;
+				sudo ufw allow 3389/tcp;
+			else
+				echo xfce4-session >~/.xsession;
+				sudo sed -i.bak '/fi/a #edit \n startxfce4 \n' /etc/xrdp/startwm.sh;
+			fi
 			if [[ "$OS_VERSION" == "16.04" ]]; then
 				sudo cp .xsession /etc/skel/;
 				sudo sed -i.bak '/port/c port=ask-1' /etc/xrdp/xrdp.ini;
@@ -186,7 +191,11 @@ restart_service()
 {	
 	if [[ "$OS_ID" == "Ubuntu" ]]; then
 		if [[ "$SERVER" == "xrdp" ]]; then
-			sudo service xrdp restart;
+			if [[ "$OS_VERSION" == "18.04" ]]; then
+				sudo /etc/init.d/xrdp restart;
+			else
+				sudo service xrdp restart;
+			fi
 		else
 			sudo vncserver -kill :1;
 			echo -e "$P\n$P" | sudo vncserver -geometry 1600x900 -depth 24;
