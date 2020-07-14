@@ -42,9 +42,9 @@ install_extra_packages()
 		sudo chmod a=rwx /etc/chromium-browser/default;
 		sudo chmod -R a=rwx /home/;
 		echo "CHROMIUM_FLAGS=\" --user-data-dir --no-sandbox\"" >  /etc/chromium-browser/default ;
-		echo -e "[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
-		echo -e "[Desktop Entry]\nName=chromium\nExec=chromium-browser www.gmail.com\nType=Application" >> /home/chromium.desktop
-		echo -e "[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chromium\nExec=chromium-browser www.gmail.com\nType=Application" >> /home/chromium.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
 		chmod +x /home/chromium.desktop;
 		chmod +x /home/chrome.desktop;
 		chmod +x /home/firefox.desktop;
@@ -56,9 +56,9 @@ install_extra_packages()
 		rm /tmp/google-chrome-stable_current_amd64.deb;
 		sudo chmod a=rwx /etc/chromium-browser/default;
 		sudo chmod -R a=rwx /home/;
-		echo -e "[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
-		echo -e "[Desktop Entry]\nName=chromium\nExec=chromium www.gmail.com\nType=Application" >> /home/chromium.desktop
-		echo -e "[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chromium\nExec=chromium www.gmail.com\nType=Application" >> /home/chromium.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
 		chmod +x /home/chromium.desktop;
 		chmod +x /home/chrome.desktop;
 		chmod +x /home/firefox.desktop;
@@ -87,37 +87,37 @@ startup_settings()
 		if [[ "$OS_ID" == "Ubuntu" ]]; then
 			sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart
 			if [[ "$STARTUP_BROWSER" == "chrome" ]]; then
-				echo -e "[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox www.google.com \nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
+				echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox www.google.com \nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/chrome.desktop;
 			elif [[ "$STARTUP_BROWSER" == "chromium" ]]; then
-				echo -e "[Desktop Entry]\nName=Chromium_autostart\nExec=chromium-browser --no-sandbox www.google.com \nType=Application" >>/etc/xdg/autostart/chromium.desktop; #chrome would start at start up
+				echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Chromium_autostart\nExec=chromium-browser --no-sandbox www.google.com \nType=Application" >>/etc/xdg/autostart/chromium.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/chromium.desktop;
 			elif [[ "$STARTUP_BROWSER" == "firefox" ]]; then
-				echo -e "[Desktop Entry]\nName=Firefox_autostart\nExec=firefox www.google.com \nType=Application" >>/etc/xdg/autostart/fox.desktop; #chrome would start at start up
+				echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Firefox_autostart\nExec=firefox www.google.com \nType=Application" >>/etc/xdg/autostart/fox.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/fox.desktop;
 			else
 				echo "ERROR!! BROWSER NOT AVAILABLE!!"
 			fi
-			echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
+			echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Terminal_autostart\nExec=xterm -hold -e 'cat /home/Automation/txt.file'\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
 			sudo chmod +x /etc/xdg/autostart/term.desktop;
-			echo -e "[Desktop Entry]\nName=Terminal_autostart1\nExec=xterm\nType=Application" >>/etc/xdg/autostart/term1.desktop; #terminal would start at start up
+			echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Terminal_autostart1\nExec=xterm\nType=Application" >>/etc/xdg/autostart/term1.desktop; #terminal would start at start up
 			sudo chmod +x /etc/xdg/autostart/term1.desktop;
 		elif [[ "$OS_ID" == "debian" ]]; then
 			sudo chmod -R a=rwx /etc/xdg/autostart/ ; #granting permission to edit autostart
 			if [[ "$STARTUP_BROWSER" == "chrome" ]]; then
-				echo -e "[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
+				echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Chrome_autostart\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >>/etc/xdg/autostart/chrome.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/chrome.desktop;
 			elif [[ "$STARTUP_BROWSER" == "chromium" ]]; then
-				echo -e "[Desktop Entry]\nName=Chromium_autostart\nExec=chromium --no-sandbox www.gmail.com\nType=Application" >>/etc/xdg/autostart/chromium.desktop; #chrome would start at start up
+				echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Chromium_autostart\nExec=chromium --no-sandbox www.gmail.com\nType=Application" >>/etc/xdg/autostart/chromium.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/chromium.desktop;
 			elif [[ "$STARTUP_BROWSER" == "firefox" ]]; then
-				echo -e "[Desktop Entry]\nName=Firefox_autostart\nExec=firefox www.gmail.com\nType=Application" >>/etc/xdg/autostart/fox.desktop; #chrome would start at start up
+				echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Firefox_autostart\nExec=firefox www.gmail.com\nType=Application" >>/etc/xdg/autostart/fox.desktop; #chrome would start at start up
 				sudo chmod +x /etc/xdg/autostart/fox.desktop;
 			else
 				echo "Browser not supported!!"
 			fi
 			
-			echo -e "[Desktop Entry]\nName=Terminal_autostart\nExec=xterm\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
+			echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=Terminal_autostart\nExec=xterm\nType=Application" >>/etc/xdg/autostart/term.desktop; #terminal would start at start up
 			sudo chmod +x /etc/xdg/autostart/term.desktop;
 		fi
 
@@ -273,9 +273,9 @@ else
 		sudo chmod a=rwx /etc/chromium-browser/default;
 		sudo chmod -R a=rwx /home/;
 		echo "CHROMIUM_FLAGS=\" --user-data-dir --no-sandbox\"" >  /etc/chromium-browser/default ;
-		echo -e "[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
-		echo -e "[Desktop Entry]\nName=chromium\nExec=chromium-browser www.gmail.com\nType=Application" >> /home/chromium.desktop
-		echo -e "[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chromium\nExec=chromium-browser www.gmail.com\nType=Application" >> /home/chromium.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
 		chmod +x /home/chromium.desktop;
 		chmod +x /home/chrome.desktop;
 		chmod +x /home/firefox.desktop;
@@ -298,9 +298,9 @@ else
 		sudo chmod a=rwx /etc/chromium-browser/default;
 		sudo chmod -R a=rwx /home/;
 		echo "CHROMIUM_FLAGS=\" --user-data-dir --no-sandbox\"" >  /etc/chromium-browser/default ;
-		echo -e "[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
-		echo -e "[Desktop Entry]\nName=chromium\nExec=chromium-browser www.gmail.com\nType=Application" >> /home/chromium.desktop
-		echo -e "[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chrome\nExec=google-chrome --no-sandbox www.gmail.com\nType=Application" >> /home/chrome.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=chromium\nExec=chromium-browser www.gmail.com\nType=Application" >> /home/chromium.desktop
+		echo -e "#!/usr/bin/env xdg-open\n[Desktop Entry]\nName=firefox\nExec=firefox www.gmail.com\nType=Application" >> /home/firefox.desktop
 		chmod +x /home/chromium.desktop;
 		chmod +x /home/chrome.desktop;
 		chmod +x /home/firefox.desktop;
@@ -317,4 +317,3 @@ if [ -f /etc/xdg/autostart/xscreensaver.desktop ]; then
 else
 	sudo sed -i.bak '/@xscreensaver/c #screensaver removes' /etc/xdg/lxsession/LXDE/autostart
 fi
-
