@@ -19,7 +19,8 @@ OS_NAME='$OS_ID $OSVERSION'
 STARTUP_BROWSER='chrome' #default browser
 detect_os()
 {	
-	sudo apt-get -y install python-minimal
+	sudo apt-get -y update
+	sudo apt-get -y install python
 	OS_ID=$(python -c 'import platform ; print platform.dist()[0]')
 	OS_VERSION=$(python -c 'import platform ; print platform.dist()[1]')
 	OS_NAME="$OS_ID $OS_VERSION"
